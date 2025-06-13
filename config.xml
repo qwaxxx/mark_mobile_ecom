@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.xample" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Mobile-ecom</name>
+    <description>Cordova</description>
+    <author>Mobile-ecom</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-navigation href="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-navigation href="http://127.0.0.1:5500" />
+    <allow-navigation href="file://*" />
+    <allow-navigation href="ionic://localhost" />
+    <platform name="android">
+    
+
+</platform>
+
+</widget>

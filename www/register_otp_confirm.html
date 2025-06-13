@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Code Verification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --primary-hover: #3a56d4;
+      --text-color: #2c3e50;
+      --light-gray: #f8f9fa;
+      --border-color: #e0e0e0;
+      --error-color: #e63946;
+      --success-color: #2ecc71;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc); /* Updated background to match login */
+      color: white; /* Change text color to white for contrast */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .auth-main {
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .auth-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .auth-form {
+      width: 100%;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      border: none;
+    }
+    
+    .card-body {
+      padding: 2.5rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: var(--text-color);
+    }
+    
+    .otp-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      gap: 12px;
+    }
+    
+    .otp-input {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    
+    .otp-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    .otp-input.filled {
+      border-color: var(--primary-color);
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+    
+    .resend-text {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #666;
+    }
+    
+    .resend-text a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .resend-text a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 480px) {
+      .card-body {
+        padding: 1.5rem;
+      }
+      
+      .otp-input {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+      
+      h3 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="card">
+        <div class="card-body">
+          <h3>Enter Verification Code</h3>
+          <p class="text-center mb-4" style="color: #666;">We've sent a code to your email</p>
+          
+          <!-- OTP Form -->
+          <form method="POST" id="otpForm">
+            <div class="otp-container">
+              <input type="text" id="otp1" maxlength="1" class="otp-input" required autofocus>
+              <input type="text" id="otp2" maxlength="1" class="otp-input" required>
+              <input type="text" id="otp3" maxlength="1" class="otp-input" required>
+              <input type="text" id="otp4" maxlength="1" class="otp-input" required>
+            </div>
+            <input type="hidden" name="otp" id="combinedOtp">
+            <div class="d-grid mt-4">
+              <button id="verifyBtn" class="btn btn-primary">Verify</button>
+            </div>
+          </form>
+
+          <div class="resend-text">
+            <p>Didn't receive the code? <a href="register.html">Go Back</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Enhanced OTP input handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const otpInputs = document.querySelectorAll('.otp-input');
+    
+    // Auto-focus and auto-tab between inputs
+    otpInputs.forEach((input, index) => {
+      // Handle paste event
+      input.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const pasteData = e.clipboardData.getData('text/plain').trim();
+        if (/^\d{4}$/.test(pasteData)) {
+          otpInputs.forEach((input, i) => {
+            input.value = pasteData[i] || '';
+            input.classList.add('filled');
+          });
+          otpInputs[3].focus();
+        }
+      });
+      
+      // Handle input event
+      input.addEventListener('input', (e) => {
+        const value = e.target.value;
+        if (value.length === 1) {
+          e.target.classList.add('filled');
+          if (index < otpInputs.length - 1) {
+            otpInputs[index + 1].focus();
+          }
+        } else if (value.length === 0) {
+          e.target.classList.remove('filled');
+        }
+      });
+      
+      // Handle backspace
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+          otpInputs[index - 1].focus();
+        }
+      });
+    });
+    
+    // Submit OTP
+    document.getElementById("verifyBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      const enteredOtp = Array.from(otpInputs).map(input => input.value).join('');
+      const storedOtp = localStorage.getItem("otp");
+      const regData = JSON.parse(localStorage.getItem("registration_data"));
+
+      if (!enteredOtp || enteredOtp.length !== 4) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Incomplete Code',
+          text: 'Please enter the complete 4-digit code',
+          confirmButtonColor: '#4361ee'
+        });
+        return;
+      }
+
+      if (!storedOtp || !regData) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Session Expired',
+          text: 'Please register again',
+          confirmButtonColor: '#4361ee'
+        }).then(() => {
+          window.location.href = "register.html";
+        });
+        return;
+      }
+
+      if (enteredOtp !== storedOtp) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Code',
+          text: 'The code you entered is incorrect. Please try again.',
+          confirmButtonColor: '#4361ee'
+        }).then(() => {
+          window.location.href = "register_otp_confirm.html";
+        });
+        return;
+      }
+
+      // Show loading state
+      const verifyBtn = document.getElementById("verifyBtn");
+      verifyBtn.disabled = true;
+      verifyBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verifying...';
+
+      // Send verified user data to backend
+      fetch("https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/save_user.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(regData),
+      })
+      .then(async (res) => {
+        const text = await res.text();
+        try {
+          return JSON.parse(text);
+        } catch (err) {
+          console.error("Invalid JSON response:", text);
+          throw new Error("Invalid JSON");
+        }
+      })
+      .then(response => {
+        if (response.status === "success") {
+          Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful!',
+            text: 'You can now login to your account',
+            confirmButtonColor: '#4361ee'
+          }).then(() => {
+            localStorage.removeItem("otp");
+            localStorage.removeItem("registration_data");
+            window.location.href = "login_page.html";
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Registration Failed',
+            text: response.message || 'Please try again later',
+            confirmButtonColor: '#4361ee'
+          });
+          verifyBtn.disabled = false;
+          verifyBtn.textContent = 'Verify';
+        }
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Network Error',
+          text: 'Please check your connection and try again',
+          confirmButtonColor: '#4361ee'
+        });
+        verifyBtn.disabled = false;
+        verifyBtn.textContent = 'Verify';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

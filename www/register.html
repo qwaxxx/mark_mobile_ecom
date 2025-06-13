@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Register</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <link rel="icon" href="asset/images/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap">
+  <style>
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 20px; /* Added padding for small screens */
+    }
+
+    .auth-form {
+      width: 100%;
+      max-width: 600px; /* Wider form */
+      padding: 40px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .auth-form h3 {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn-primary {
+      background-color: #6a11cb;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #2575fc;
+    }
+
+    .link-danger {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .link-danger:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .auth-form {
+        padding: 20px; /* Reduce padding on smaller screens */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="auth-form">
+    <div class="text-center mb-4">
+      <p class="text-muted">Create your account. It's free!</p>
+    </div>
+    <form id="registerForm">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Name</label>
+          <input required type="text" name="name" class="form-control" placeholder="Enter Name" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Email</label>
+          <input required type="email" name="email" class="form-control" placeholder="Enter Email" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Contact</label>
+          <input required type="text" name="contact" class="form-control" placeholder="Enter Contact" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">User Type</label>
+          <select required name="user_type" class="form-control">
+            <option value="" disabled selected>Select type</option>
+            <option value="customer">Customer</option>
+            <option value="seller">Seller</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-label">Picture</label>
+        <input required type="file" name="profile_image" class="form-control">
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-label">Password</label>
+        <input required type="password" name="password" class="form-control" placeholder="Enter Password" required>
+      </div>
+      <div class="d-grid mt-4">
+        <button type="submit" name="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+    <div class="auth-footer">
+      <p class="m-0">Copyright © E-commerce</p>
+      <br>
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item"><a style="text-decoration: none;" href="login_page.html">Already have an account? Login</a></li>
+      </ul>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  const registerForm = document.getElementById("registerForm");
+
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior.
+
+    const formData = new FormData(registerForm); // Create a FormData object from the form.
+
+    try {
+      const response = await fetch("https://orchid-chinchilla-614427.hostingersite.com/markrey/api/register.php", {
+        method: "POST", // Set the request method to POST.
+        body: formData, // Attach the form data to the request.
+      });
+
+      const result = await response.json(); // Parse the JSON response.
+
+      if (result.status === "success") {
+        // Temporarily store data in localStorage
+        localStorage.setItem("otp", result.otp); // Store OTP for verification.
+        localStorage.setItem("registration_data", JSON.stringify(result.data)); // Store registration data.
+
+        alert("OTP sent to email. Please verify."); // Alert the user.
+        window.location.href = "register_otp_confirm.html"; // Redirect to OTP confirmation page.
+      } else {
+        alert(result.message); // Alert the user with the error message.
+      }
+    } catch (err) {
+      console.error("Error:", err); // Log any errors to the console.
+      alert("Something went wrong. Try again."); // Alert the user of the error.
+    }
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

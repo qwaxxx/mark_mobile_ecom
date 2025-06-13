@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Users</title>
+  <!-- [Meta] -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
+  <meta name="keywords" content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
+  <meta name="author" content="CodedThemes">
+
+  <link rel="icon" href="asset/images/favicon.svg" type="image/x-icon"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
+<link rel="stylesheet" href="asset/fonts/tabler-icons.min.css" >
+<link rel="stylesheet" href="asset/fonts/feather.css" >
+<link rel="stylesheet" href="asset/fonts/fontawesome.css" >
+<link rel="stylesheet" href="asset/fonts/material.css" >
+<link rel="stylesheet" href="asset/css/style.css" id="main-style-link" >
+<link rel="stylesheet" href="asset/css/style-preset.css" >
+
+</head>
+<body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
+  <!-- [ Pre-loader ] start -->
+<div class="loader-bg">
+  <div class="loader-track">
+    <div class="loader-fill"></div>
+  </div>
+</div>
+<!-- [ Pre-loader ] End -->
+
+<!-- [ Sidebar Menu ] start -->
+<nav class="pc-sidebar">
+  <div class="navbar-wrapper">
+    <div class="m-header">
+      <a href="" class="b-brand text-primary">
+        <h5>E-commerce</h5>
+      </a>
+    </div>
+    <div class="navbar-content">
+      <ul class="pc-navbar">
+        <li class="pc-item">
+          <a href="admin_dashboard.html" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
+            <span class="pc-mtext">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="pc-item pc-caption">
+          <label>Menu</label>
+          <i class="ti ti-dashboard"></i>
+        </li>
+      
+        <li class="pc-item">
+          <a href="admin_user_list.html" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-users"></i></span>
+            <span class="pc-mtext">Users</span>
+          </a>
+        </li>
+
+        <li class="pc-item pc-caption">
+          <label>Settings</label>
+          <i class="ti ti-news"></i>
+        </li>
+        <li class="pc-item">
+          <a href="admin_profile.html" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-user"></i></span>
+            <span class="pc-mtext">Profile</span>
+          </a>
+        </li>
+        <li class="pc-item">
+          <a href="#" id="logoutBtn" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-logout"></i></span>
+            <span class="pc-mtext">Logout</span>
+          </a>
+        </li>
+
+        <!-- <li class="pc-item">
+          <a href="" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
+            <span class="pc-mtext">Help</span>
+          </a>
+        </li> -->
+      </ul>
+      <!-- <div class="card text-center">
+        <div class="card-body">
+          <img src="../assets/images/img-navbar-card.png" alt="images" class="img-fluid mb-2">
+          <h5>Upgrade To Pro</h5>
+          <p>To get more features and components</p>
+          <a href="https://codedthemes.com/item/berry-bootstrap-5-admin-template/" target="_blank"
+          class="btn btn-success">Buy Now</a>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</nav>
+<!-- [ Sidebar Menu ] end --> <!-- [ Header Topbar ] start -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<header class="pc-header">
+  <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
+<div class="me-auto pc-mob-drp">
+  <ul class="list-unstyled">
+    <!-- ======= Menu collapse Icon ===== -->
+    <li class="pc-h-item pc-sidebar-collapse">
+      <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+        <i class="ti ti-menu-2"></i>
+      </a>
+    </li>
+    <li class="pc-h-item pc-sidebar-popup">
+      <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+        <i class="ti ti-menu-2"></i>
+      </a>
+    </li>
+    <li class="dropdown pc-h-item d-inline-flex d-md-none">
+      <a
+        class="pc-head-link dropdown-toggle arrow-none m-0"
+        data-bs-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="false"
+        aria-expanded="false"
+      >
+        <i class="ti ti-search"></i>
+      </a>
+      <div class="dropdown-menu pc-h-dropdown drp-search">
+        <form class="px-3">
+          <div class="form-group mb-0 d-flex align-items-center">
+            <i data-feather="search"></i>
+            <input type="search" class="form-control border-0 shadow-none" placeholder="Search here. . .">
+          </div>
+        </form>
+      </div>
+    </li>
+   
+  </ul>
+</div>
+<!-- [Mobile Media Block end] -->
+<div class="ms-auto">
+  <ul class="list-unstyled">
+    
+  <!-- <li class="dropdown pc-h-item">
+          <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="ti ti-bell"></i>
+            <span>3</span>
+          </a>
+
+          <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
+            <div class="dropdown-header d-flex align-items-center justify-content-between">
+              <h5 class="m-0">Notifications</h5>
+              <a href="#" class="pc-head-link bg-transparent" onclick="clearNotifications(event)">
+                <i class="ti ti-x text-danger"></i>
+              </a>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative" style="max-height: calc(100vh - 215px); overflow-y: auto;">
+              <div class="list-group list-group-flush w-100" id="notificationList">
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="text-center py-2">
+              <a href="#" class="link-primary">View all</a>
+            </div>
+          </div>
+        </li> -->
+    
+    <li class="dropdown pc-h-item header-user-profile">
+      <a
+        class="pc-head-link dropdown-toggle arrow-none me-0"
+        data-bs-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="false"
+        data-bs-auto-close="outside"
+        aria-expanded="false"
+      >
+       <img id="userProfilePreview" src="https://orchid-chinchilla-614427.hostingersite.com/jellygrace/img/Profile.jpg" alt="User profile image" class="user-avtar">
+        <span id="userProfileName"></span>
+
+      </a>
+      <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+        <div class="tab-content" id="mysrpTabContent">
+          <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">
+            <a href="admin_profile.html" class="dropdown-item">
+              <i class="ti ti-user"></i>
+              <span>View Profile</span>
+            </a>
+            <a href="#" id="logoutBtn1" class="dropdown-item">
+              <i class="ti ti-power"></i>
+              <span>Logout</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+ </div>
+</header>
+<!-- [ Header ] end -->
+
+
+<!-- [ Main Content ] start -->
+<div class="pc-container">
+  <div class="pc-content">
+
+    <!-- Add User Button -->
+    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#userModal" onclick="openAddModal()">
+      <i class="fas fa-user-plus me-1"></i> Add User
+    </button>
+
+    <!-- Custom Search Right Aligned -->
+    <div class="row mb-3 pt-2">
+      <div class="col-12 text-end">
+        <input type="text" id="customSearch" class="form-control form-control-sm w-auto d-inline-block" placeholder="🔍 Search users..." onkeyup="filterUserTable()" />
+      </div>
+    </div>
+
+    <!-- User Table -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table id="userTable" class="table table-hover table-bordered table-sm table-striped align-middle mb-0 text-nowrap">
+                <thead class="table-light sticky-top text-center">
+                  <tr>
+                    <th onclick="sortTable(0)">ID <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(1)">Name <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(2)">Email <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(3)">Contact <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(4)">Type <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(5)">Created <span class="sort-indicator"></span></th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Juan Dela Cruz</td>
+                    <td>juan@example.com</td>
+                    <td>09123456789</td>
+                    <td>Admin</td>
+                    <td>2024-01-01</td>
+                    <td class="text-center">
+                      <button class="btn btn-sm btn-primary">Edit</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Maria Clara</td>
+                    <td>maria@example.com</td>
+                    <td>09987654321</td>
+                    <td>User</td>
+                    <td>2024-02-15</td>
+                    <td class="text-center">
+                      <button class="btn btn-sm btn-primary">Edit</button>
+                    </td>
+                  </tr>
+                  <!-- Add more rows as needed -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- [ Main Content ] end -->
+
+<!-- Scripts -->
+<script>
+  // 🔍 Custom Search
+  function filterUserTable() {
+    const input = document.getElementById("customSearch").value.toLowerCase();
+    const rows = document.querySelectorAll("#userTable tbody tr");
+
+    rows.forEach(row => {
+      const cells = row.querySelectorAll("td");
+      const match = Array.from(cells).some(cell =>
+        cell.textContent.toLowerCase().includes(input)
+      );
+      row.style.display = match ? "" : "none";
+    });
+  }
+
+  // 📊 Simple Sort Function
+  function sortTable(colIndex) {
+    const table = document.getElementById("userTable");
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+    const isAsc = table.getAttribute("data-sort-dir") !== "asc";
+
+    rows.sort((a, b) => {
+      const valA = a.children[colIndex].innerText.trim().toLowerCase();
+      const valB = b.children[colIndex].innerText.trim().toLowerCase();
+      return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+    });
+
+    table.setAttribute("data-sort-dir", isAsc ? "asc" : "desc");
+    rows.forEach(row => tbody.appendChild(row));
+  }
+</script>
+
+<!-- Optional Styling -->
+<style>
+  .table thead th {
+    cursor: pointer;
+  }
+
+  .sort-indicator::after {
+    content: ' ⇅';
+    font-size: 0.75em;
+    color: #888;
+  }
+
+  .table thead.sticky-top {
+    top: 0;
+    background: #fff;
+    z-index: 1;
+  }
+</style>
+
+
+<!-- Modal -->
+<div class="modal fade" id="userModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="userForm" class="modal-content" enctype="multipart/form-data">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" id="user_id">
+                <div class="mb-2">
+                    <label>Name</label>
+                    <input type="text" name="name" id="names" class="form-control" required>
+                </div>
+                <div class="mb-2">
+                    <label>Email</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                </div>
+                <div class="mb-2">
+                    <label>Password</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label>Contact</label>
+                    <input type="text" name="contact" id="contact" class="form-control" required>
+                </div>
+                <div class="mb-2">
+                    <label>User Type</label>
+                    <select name="user_type" id="user_type" class="form-control">
+                        <option value="admin">Admin</option>
+                        <option value="seller">Seller</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label>Profile Image</label>
+                    <input type="file" name="profile_image" id="profile_image" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Save User</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- DataTables JS -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+  <script src="asset/js/plugins/apexcharts.min.js"></script>
+  <script src="asset/js/pages/dashboard-default.js"></script>
+  <script src="asset/js/plugins/popper.min.js"></script>
+  <script src="asset/js/plugins/simplebar.min.js"></script>
+  <script src="asset/js/plugins/bootstrap.min.js"></script>
+  <script src="asset/js/fonts/custom-font.js"></script>
+  <script src="asset/js/pcoded.js"></script>
+  <script src="asset/js/plugins/feather.min.js"></script>
+
+
+<script>
+    layout_change('light');
+  </script>
+  <script>
+    change_box_container('false');
+  </script>
+  <script>
+    layout_rtl_change('false');
+  </script>
+  <script>
+    preset_change("preset-1");
+  </script>
+  <script>
+    font_change("Public-Sans");
+  </script>
+
+
+  <!-- jQuery (if not already included) -->
+
+
+  <!---------- NEW SCRIPT ----------->
+
+  <script>
+      const userId = localStorage.getItem('user_id');
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userId = localStorage.getItem('user_id');
+      //alert( userId);
+    });
+  </script>
+  <script>
+  document.getElementById('logoutBtn1').addEventListener('click', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will be logged out!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Yes, logout',
+      background: '#ffffff',
+      color: '#000000'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('user_id');
+        window.location.href = 'login_page.html'; // Your actual logout script
+      }
+    });
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will be logged out!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Yes, logout',
+      background: '#ffffff',
+      color: '#000000'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('user_id');
+        window.location.href = 'login_page.html'; // Your actual logout script
+      }
+    });
+  });
+  
+</script>
+   <script>
+    $(document).ready(function () {
+      loadUsers();
+      $('#userTable').DataTable();
+
+      function loadUsers() {
+          $.getJSON('https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/admin_temp_fetch_users.php', function(data) {
+              let rows = '';
+              data.forEach(function(user) {
+                  rows += `<tr>
+                      <td>${user.id}</td>
+                      <td>${user.name}</td>
+                      <td>${user.email}</td>
+                      <td>${user.contact}</td>
+                      <td>${user.user_type}</td>
+                      <td>${user.create_on}</td>
+                      <td>
+                          <button class='btn btn-sm btn-warning' onclick='editUser(${user.id})'>Edit</button>`;
+                  if (user.id !== '1') {
+                      rows += ` <button class='btn btn-sm btn-danger' onclick='deleteUser(${user.id})'>Delete</button>`;
+                  }
+                  rows += `</td></tr>`;
+              });
+              $('#userTable tbody').html(rows);
+          });
+      }
+
+        $('#userForm').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      url: 'https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/admin_add_edit_user.php',
+      type: 'POST',
+      data: new FormData(this),
+      contentType: false,
+      processData: false,
+      dataType: 'json', // ensure jQuery parses JSON response
+      success: function(response) {
+            if (response.success) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: response.message,
+                timer: 2000,
+                showConfirmButton: false
+              });
+              $('#userModal').modal('hide');
+              loadUsers();
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: response.message,
+                timer: 3000,
+                showConfirmButton: false
+              });
+            }
+          },
+          error: function(xhr, status, error) {
+            Swal.fire('Error', 'An error occurred while processing your request.', 'error');
+          }
+        });
+      });
+    });
+
+    function openAddModal() {
+      $('#userForm')[0].reset();
+      $('#user_id').val('');
+      $('#modalTitle').text('Add User');
+    }
+
+    function editUser(id) {
+          $.getJSON('https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/admin_temp_fetch_user.php', { id }, function(data) {
+              $('#user_id').val(data.id);
+              $('#names').val(data.name);
+              $('#email').val(data.email);
+              $('#contact').val(data.contact);
+              $('#user_type').val(data.user_type);
+              $('#modalTitle').text('Edit User');
+              const modal = new bootstrap.Modal(document.getElementById('userModal'));
+              modal.show();
+          });
+      }
+
+     function deleteUser(id) {
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "This user will be permanently deleted!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Yes, delete',
+              cancelButtonText: 'Cancel',
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#aaa'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  $.post('https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/admin_delete_user.php', { id }, function(response) {
+                      if (response.success) {
+                          Swal.fire('Deleted!', response.message, 'success');
+                          loadUsers(); // reload table
+                      } else {
+                          Swal.fire('Error!', response.message, 'error');
+                      }
+                  }, 'json');
+              }
+          });
+      }
+
+
+  </script>
+
+<script>
+    (function() {
+        // Unique constants for this instance
+        const PROFILE_WIDGET_API_BASE = 'https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api';
+        const PROFILE_USER_ID = localStorage.getItem('user_id');
+
+        if (!PROFILE_USER_ID) {
+            Swal.fire('Error', 'User not logged in', 'error');
+            // Redirect to login page or handle unauthorized access
+            return;
+        }
+        const profilePreviewEl = document.getElementById('userProfilePreview');
+        const profileNameEl = document.getElementById('userProfileName');
+        async function loadUserProfileWidget() {
+            try {
+                const res = await fetch(`${PROFILE_WIDGET_API_BASE}/admin_get_profile.php?user_id=${PROFILE_USER_ID}`);
+                const data = await res.json();
+                
+                if (data.error) {
+                    return Swal.fire('Error', data.error, 'error');
+                }
+
+                profileNameEl.textContent = data.name;
+                profilePreviewEl.src = data.profile_image ? 
+                    `${PROFILE_WIDGET_API_BASE}/../img/${data.profile_image}` : 'https://orchid-chinchilla-614427.hostingersite.com/jellygrace/img/Profile.jpg';
+            } catch (error) {
+                Swal.fire('Error', 'Failed to load profile', 'error');
+                console.error('Profile widget error:', error);
+            }
+        }
+
+        loadUserProfileWidget();
+    })();
+</script>
+
+</body>
+</html>
