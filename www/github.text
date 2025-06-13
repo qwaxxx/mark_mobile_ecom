@@ -1,194 +1,421 @@
-To change the background of your "Set New Password" page to match the gradient style used in your other pages (like the login and registration pages), you can update the CSS for the body. Here’s the modified code:
+To change the background of your "Checkout" page to match the gradient style used in your other pages, you can update the `body` styles. Here’s how you can adjust the background while keeping the rest of your code intact:
+
+1. **Remove the existing class from the body** that sets a plain background color (`grey lighten-3`).
+2. **Add a gradient background style** directly in the body CSS.
+
+Here’s the modification you need to make:
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Set New Password</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="asset/css/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <style>
-    body {
-      background: linear-gradient(to right, #6a11cb, #2575fc); /* Updated background to a gradient */
-      color: white; /* Change text color to white for better contrast */
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+<body style="background: linear-gradient(to right, #6a11cb, #2575fc); color: white;">
+```
 
-    .auth-main {
-      width: 100%;
-      max-width: 500px;
-    }
+### Complete Updated Code Snippet
+Here’s where you should place this change in your existing code:
 
-    .card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      border: none;
-    }
-
-    .auth-footer {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .link-primary {
-      color: #6a11cb; /* Link color */
-    }
-
-    .link-primary:hover {
-      text-decoration: underline; /* Underline on hover */
-    }
-
-    .btn-primary {
-      background-color: #6a11cb; /* Button color */
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: #2575fc; /* Button hover color */
-    }
-  </style>
-</head>
-<body>
-
-<div class="auth-main">
-  <div class="auth-wrapper v3">
-    <div class="auth-form">
-      <div class="card my-5">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-end mb-4">
-            <h3 class="mb-0"><b>Set New Password</b></h3>
-            <a href="login_page.php" class="link-primary">Back to Login</a>
-          </div>
-
-          <form id="resetPasswordForm">
-            <input type="hidden" id="email" name="email">
-            <input type="hidden" id="token" name="token">
-
-            <div class="form-group mb-3">
-              <label class="form-label">New Password</label>
-              <input required type="password" name="password" class="form-control" placeholder="Enter New Password">
+```html
+<body style="background: linear-gradient(to right, #6a11cb, #2575fc); color: white;">
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand waves-effect" href="index.html">
+                <strong class="blue-text">E-commerce</strong>
+            </a>
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <!-- Right -->
+                <ul class="navbar-nav nav-flex-icons" id="userNav">
+                </ul>
             </div>
-            <div class="form-group mb-3">
-              <label class="form-label">Confirm Password</label>
-              <input required type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
-            </div>
-
-            <div class="d-grid mt-4">
-              <button type="submit" class="btn btn-primary">Reset Password</button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </nav>
+    <!-- Navbar -->
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+        <div class="container wow fadeIn">
+            <!-- Heading -->
+            <!-- <h2 class="my-5 h2 text-center">Checkout form</h2> -->
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-8 mb-4">
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card content-->
+                        <form class="card-body" id="billingForm">
+                            <!--Grid row-->
+                            <div class="row">
+                                <!--Grid column-->
+                                <div class="col-md-6 mb-2">
+                                    <!--firstName-->
+                                    <div class="md-form ">
+                                        <input type="text" name="first_name" id="first_name" class="form-control">
+                                        <label for="firstName" class="">First name</label>
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                                <!--Grid column-->
+                                <div class="col-md-6 mb-2">
+                                    <!--lastName-->
+                                    <div class="md-form">
+                                        <input type="text" name="last_name" id="last_name" class="form-control">
+                                        <label for="lastName" class="">Last name</label>
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                            <!--Grid row-->
+                            <!--email-->
+                            <div class="md-form mb-5">
+                                <input type="text" name="email" id="email" class="form-control" placeholder="youremail@example.com">
+                                <label for="email" class="">Email (required)</label>
+                            </div>
+                            <!--address-->
+                            <div class="md-form mb-5">
+                                <input type="text" name="house_address" id="address_house" class="form-control" placeholder="1234 Main St">
+                                <label for="address_house" class="">Blk-Lot/street/village</label>
+                            </div>
+                            <!--address-2-->
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+                                    <div class="md-form">
+                                        <input type="text" name="baranggay" id="Baranggay" class="form-control" placeholder="Baranggay">
+                                        <label for="Baranggay" class="">Baranggay</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="md-form">
+                                        <input type="text" name="city" id="City" class="form-control" placeholder="City">
+                                        <label for="City" class="">City</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Grid row-->
+                            <div class="row">
+                                <!--Grid column-->
+                                <div class="col-lg-4 col-md-12 mb-4">
+                                    <label for="province">Province</label>
+                                    <select class="custom-select d-block w-100" id="province" name="province" required>
+                                        <option value="">Choose...</option>
+                                        <option>Misamis Occidental</option>
+                                        <option>Misamis Oriental</option>
+                                        <option>Cagayan De Oro</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid Province.
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                                <!--Grid column-->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <label for="country">Country</label>
+                                    <select class="custom-select d-block w-100" name="country" id="country" required>
+                                        <option value="">Choose...</option>
+                                        <option>Philippines</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid Country.
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                                <!--Grid column-->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" class="form-control" name="zip" id="zip" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Zip code required.
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                            <!--Grid row-->
+                            <hr>
+                            <div class="d-block my-3">
+                                <div class="custom-control custom-radio">
+                                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                    <label class="custom-control-label" for="credit">Cash on delivery</label>
+                                </div>
+                            </div>
+                            <hr class="mb-4">
+                            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Continue to checkout">
+                        <a href="index.html" class="btn btn-secondary btn-lg btn-block-block mt-2">
+                                <i class="fas fa-arrow-left me-1"></i> Back to Shop
+                            </a>
+                        
+                        </form>
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+            <div class="col-md-4 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                    <span class="badge badge-secondary badge-pill"></span>
+                </h4>
+                <ul class="list-group mb-3 z-depth-1">
+                </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
 
-<script>
-// Extract token and email from URL
-const urlParams = new URLSearchParams(window.location.search);
-const token = urlParams.get('token');
-const email = urlParams.get('email');
+        </div>
+    </main>
 
-if (!token || !email) {
-  Swal.fire({
-    icon: 'error',
-    title: 'Error',
-    text: 'Invalid password reset link',
-    confirmButtonColor: '#d33'
-  }).then(() => {
-    window.location.href = 'login_page.html';
-  });
-} else {
-  document.getElementById('email').value = email;
-  document.getElementById('token').value = token;
+    <footer class="bg-dark text-white py-3 mt-auto">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md text-center text-md-start mb-2 mb-md-0">
+                    <small>&copy; 2025 E-commerce. All rights reserved.</small>
+                </div>
+                <!-- <div class="col-md-auto text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="text-white text-decoration-none">E-commerce</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </footer>
 
-  // Verify token with API
-  fetch(`https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/verify_reset_token.php?token=${token}&email=${email}`)
-    .then(response => response.json())
-    .then(data => {
-      if (!data.valid) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: data.message || 'Invalid or expired reset link',
-          confirmButtonColor: '#d33'
-        }).then(() => {
-          window.location.href = 'login_page.html';
-        });
-      }
-    });
-}
+    <!--Main layout-->
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || {};
+            let totalItems = 0;
+            for (let id in cart) {
+                totalItems += cart[id];
+            }
+            const badge = document.getElementById('cart-badge');
+            if (badge) {
+                badge.textContent = totalItems > 0 ? totalItems : '';
+            }
+        }
+        function createGuestIdIfNeeded() {
+            if (!localStorage.getItem('user_id') && !localStorage.getItem('temp_id')) {
+                const tempId = 'guest_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('temp_id', tempId);
+                //alert("Guest ID: " + tempId); // Correct usage of alert
+            }else{
+                const tempId = localStorage.getItem('temp_id');
+                //alert("Guest ID: " + tempId);
+            }
+            const userNav = document.getElementById('userNav');
+            const userId = localStorage.getItem('user_id');
+            if (userId) {
+                // Fetch user's name from the server using Ajax
+                fetch('https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/fetch_user.php?user_id=' + encodeURIComponent(userId))
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            userNav.innerHTML = `
+                                <li class="nav-item">
+                                    <a class="nav-link waves-effect" href="checkout-page.html">
+                                        <span id="cart-badge" class="badge red z-depth-1 mr-1"> </span>
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item d-flex align-items-center">
+                                    <a class="nav-link d-flex align-items-center gap-2 px-3 py-2 rounded shadow-sm text-dark bg-light hover-effect" 
+                            href="customer_dashboard.html" style="text-decoration: none;">
+                            <i class="ti ti-layout-dashboard fs-5 text-primary"></i>
+                            <span class="fw-semibold">Dashboard</span>
+                            </a>
+                                    <a class="nav-link" href="#" onclick="logout()">Logout</a>
+                                </li>
+                            `;
+                            
+                             updateCartBadge()
+                        } else {
+                            showLoginLink();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("User fetch error:", error);
+                        showLoginLink();
+                    });
+            } else {
+                showLoginLink();
+            }
+            function showLoginLink() {
+                userNav.innerHTML = `
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="checkout-page.html">
+                            <span id="cart-badge" class="badge red z-depth-1 mr-1"> </span>
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login_page.html" class="nav-link border border-light rounded waves-effect">
+                            <i class="fas fa-user-circle mr-2"></i>Login
+                        </a>
+                    </li>
+                `;
+            }
+            window.logout = function() {
+                localStorage.removeItem('user_id');
+                window.location.href = "login_page.html";
+            };
+            const cart = JSON.parse(localStorage.getItem('cart') || '{}');
 
-// Handle form submission
-document.getElementById('resetPasswordForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-  const password = formData.get('password');
-  const confirmPassword = formData.get('confirm_password');
-
-  if (password !== confirmPassword) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Error',
-      text: 'Passwords do not match',
-      confirmButtonColor: '#d33'
-    });
-    return;
-  }
-
-  fetch('api/reset_password.php', {
+fetch('https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/fetch_cart.php', {
     method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: data.message,
-        confirmButtonColor: '#3085d6'
-      }).then(() => {
-        window.location.href = 'login_page.html';
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: data.message,
-        confirmButtonColor: '#d33'
-      });
-    }
-  })
-  .catch(error => {
-    Swal.fire({
-      icon: 'error',
-      title: 'Error',
-      text: 'An error occurred while resetting your password',
-      confirmButtonColor: '#d33'
-    });
-  });
-});
-</script>
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ cart: cart })
+})
+.then(response => response.json())
+.then(data => {
+    const cartContainer = document.querySelector('.list-group.mb-3');
+    cartContainer.innerHTML = '';
 
+    if (data.success && data.items.length > 0) {
+        data.items.forEach(item => {
+            cartContainer.innerHTML += `
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">${item.name} (x${item.quantity})</h6>
+                        <small class="text-muted">${item.description}</small>
+                    </div>
+                    <span class="text-muted">₱${item.subtotal.toFixed(2)}</span>
+                </li>`;
+        });
+
+        cartContainer.innerHTML += `
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total (PHP)</span>
+                <strong>₱${data.total.toFixed(2)}</strong>
+            </li>`;
+    } else {
+        cartContainer.innerHTML = '<li class="list-group-item text-center text-muted">Your cart is empty.</li>';
+    }
+})
+.catch(error => {
+    console.error('Fetch cart error:', error);
+});
+
+    const tempId = localStorage.getItem('temp_id');
+
+    const queryParams = userId
+        ? `user_id=${encodeURIComponent(userId)}`
+        : `temp_id=${encodeURIComponent(tempId)}`;
+
+    $.ajax({
+        url: 'https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/fetch_billing_orders.php?' + queryParams,
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if (data && Object.keys(data).length > 0) {
+                $('#firstName').val(data.billing_fname);
+                $('#lastName').val(data.billing_lname);
+                $('#email').val(data.billing_email);
+                $('#address_house').val(data.billing_street_village_purok);
+                $('#Baranggay').val(data.billing_baranggay);
+                $('#City').val(data.billing_city);
+                $('#province').val(data.billing_province);
+                $('#country').val(data.billing_country);
+                $('#zip').val(data.billing_postal);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching billing info:", error);
+        }
+    });
+
+    // Intercept form submit
+    document.getElementById("billingForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // Get localStorage data
+    const userId = localStorage.getItem('user_id');
+    const tempId = localStorage.getItem('temp_id');
+    const cart = localStorage.getItem('cart');
+    
+    // Append to FormData
+    if (userId) formData.append("user_id", userId);
+    if (tempId) formData.append("temp_id", tempId);
+    if (cart) formData.append("cart", cart);
+        alert("Server response:"+ userId +" "+tempId );
+
+    fetch("https://orchid-chinchilla-614427.hostingersite.com/jellygrace/api/process_billing.php", {
+    method: "POST",
+    body: formData
+})
+.then(res => res.json())
+.then(data => {
+    if (data.status === 'redirect') {
+        alert(data.message);
+        window.location.href = data.location; // redirect to login
+        return;
+    }
+
+    if (data.status === 'success') {
+        alert("Order processed successfully!");
+        localStorage.removeItem('cart');
+        window.location.href = "customer_dashboard.html";
+        
+    } else if (data.error) {
+        alert("Error: " + data.error);
+    } else {
+        alert("Unexpected response");
+    }
+})
+.catch(err => {
+    console.error("Error:", err);
+    alert("Submission failed.");
+});
+});
+
+            updateCartBadge();
+
+        }
+            updateCartBadge();
+
+        if (typeof cordova !== 'undefined') {
+            document.addEventListener("deviceready", createGuestIdIfNeeded, false);
+        } else {
+            // For browser testing fallback
+            document.addEventListener("DOMContentLoaded", createGuestIdIfNeeded);
+        }
+    </script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+    </script>
 </body>
+
 </html>
 ```
 
-### Key Changes:
-1. **Background Update**: The body background has been changed to a gradient, providing a consistent look with your other pages.
-2. **Text Color**: The text color has been set to white to ensure good contrast against the new background.
-3. **Styling Consistency**: Minor adjustments in button and link colors ensure consistency across the application.
+### Summary of Changes:
+- **Background Update**: Change the `<body>` tag to apply a gradient background using inline CSS:
+```html
+<body style="background: linear-gradient(to right, #6a11cb, #2575fc); color: white;">
+```
 
-### Usage:
-- Replace your existing HTML code for the "Set New Password" page with the provided code.
-- Ensure that the layout and functionalities are working correctly after these changes.
+This will ensure that your checkout page has a consistent look that matches the other pages in your application. Just replace the existing body tag with the above code and you’re set!
